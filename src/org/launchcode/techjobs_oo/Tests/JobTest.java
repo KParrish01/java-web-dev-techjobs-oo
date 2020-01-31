@@ -79,24 +79,26 @@ public class JobTest {
         assertFalse(test_jobConstructor == test_jobConstructorDifferentId);
     }
 
-    @Test //TODO: <<<<<<<<<<Do I need a separate test for each line? If so, work on this...>>>>>>>>>>>>>>>>>>>>>
-    public void testBlankLineBeforeAndAfter() {
-//        assertEquals(test_jobConstructor.toString(), "");
+    @Test
+    public void testToStringBlankLineBeforeAndAfter() {
+        String toString = test_jobConstructor.toString();
+        assertTrue(toString.startsWith("\n"));
+        assertTrue(toString.endsWith("\n"));
+    }
 
-//        assertEquals(test_jobConstructor.startsWith("\n")); // change 5) into line-by-line tests?
-//        assertEquals(test_jobConstructor.contains("\n"));
-//        assertEquals(test_jobConstructor.endsWith("\n"));
-
-//        assertEquals(test_jobConstructor.toString(), "\n");
-//        assertEquals(test_jobConstructor.toString(),
-//                "\nID: " + test_jobConstructor.getId());
-
-//        if(!test_jobConstructor.getId() instanceof );
-//        if(!test_jobConstructor.getName() instanceof String) {;
+     @Test
+     public void testToStringLabelFollowedByDataInField() {
+        String toString = test_jobConstructor.toString();
+        assertTrue(toString.contains("\nID: " + test_jobConstructor.getId()));
+        assertTrue(toString.contains("\nName: " + test_jobConstructor.getName()));
+        assertTrue(toString.contains("\nEmployer: " + test_jobConstructor.getEmployer()));
+        assertTrue(toString.contains("\nLocation: " + test_jobConstructor.getLocation()));
+        assertTrue(toString.contains("\nPosition Type: " + test_jobConstructor.getPositionType()));
+        assertTrue(toString.contains("\nCore Competency: " + test_jobConstructor.getCoreCompetency()));
     }
 
     @Test
-    public void testToStringPrintsCorrectOutput() {
+    public void testToStringPrintsCorrectOutputOrder() {
         assertEquals(test_jobConstructor.toString(),
                 "\nID: " + test_jobConstructor.getId() +
                 "\nName: " + test_jobConstructor.getName() +
@@ -108,7 +110,25 @@ public class JobTest {
     }
 
     @Test
-    public void testToStringReplaceWithDataNotAvailableIfNoValue() {
+    public void testToStringIfNoDataInField() {
+        String toString1 = test_jobConstructorEmptyFields.toString();
+        assertTrue(toString1.contains("\nID: " + test_jobConstructorEmptyFields.getId()));
+        assertTrue(toString1.contains("\nName: " + test_jobConstructorEmptyFields.getName()));
+        assertTrue(toString1.contains("\nEmployer: " + "Data not available"));
+        assertTrue(toString1.contains("\nLocation: " + "Data not available"));
+        assertTrue(toString1.contains("\nPosition Type: " + "Data not available"));
+        assertTrue(toString1.contains("\nCore Competency: " + "Data not available"));
+        String toString2 = test_jobConstructorEmptyFields2DifferentFields.toString();
+        assertTrue(toString2.contains("\nID: " + test_jobConstructorEmptyFields2DifferentFields.getId()));
+        assertTrue(toString2.contains("\nName: " + "Data not available"));
+        assertTrue(toString2.contains("\nEmployer: " + "Data not available"));
+        assertTrue(toString2.contains("\nLocation: " + "Data not available"));
+        assertTrue(toString2.contains("\nPosition Type: " + "Data not available"));
+        assertTrue(toString2.contains("\nCore Competency: " + test_jobConstructorEmptyFields2DifferentFields.getCoreCompetency()));
+    }
+
+    @Test
+    public void testToStringReplaceWithDataNotAvailableIfNoValueCorrectOrder() {
         assertEquals("\nID: " + test_jobConstructorEmptyFields.getId() +
                         "\nName: " + test_jobConstructorEmptyFields.getName() +
                         "\nEmployer: " + "Data not available"+

@@ -49,7 +49,7 @@ public class Job {
 //        return Objects.hash(id);
     }
 
-    // Add toString method to allow for nice print of jobs:
+    // DONE: Add toString method to allow for nice print of jobs:
 
     @Override
     public String toString() {
@@ -77,7 +77,7 @@ public class Job {
         if (this.coreCompetency.getValue() == "" || this.coreCompetency.getValue() == null) {
             this.coreCompetency.setValue("Data not available");
         }
-        return "\nID: " + this.id +
+        return "\nID: " +  this.id +
                 "\nName: " + this.name +
                 "\nEmployer: " + this.employer +
                 "\nLocation: " + this.location +
@@ -87,7 +87,7 @@ public class Job {
     }
 
 
-// DONE: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID and id.
+    // DONE: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID and id.
 
     public int getId() {
         return id;
