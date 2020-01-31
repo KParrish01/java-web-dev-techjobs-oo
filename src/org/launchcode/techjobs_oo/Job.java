@@ -14,8 +14,7 @@ public class Job {
     private CoreCompetency coreCompetency;
 
     // DONE: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
+    //  other five fields. The second constructor should also call the first in order to initialize the 'id' field.
 
     public Job() {
         id = nextId;
@@ -50,19 +49,45 @@ public class Job {
 //        return Objects.hash(id);
     }
 
+    // Add toString method to allow for nice print of jobs:
+
     @Override
     public String toString() {
-        return "\nID: " + id +
-                "\nName: " + name +
-                "\nEmployer: " + employer +
-                "\nLocation: " + location +
-                "\nPosition Type: " + positionType +
-                "\nCore Competency: " + coreCompetency +
+        if ((this.name == ""  || this.name == null) &&
+                (this.employer.getValue() == ""  || this.employer.getValue() == null) &&
+                (this.location.getValue() == ""  || this.location.getValue() == null) &&
+                (this.positionType.getValue() == "" || this.positionType.getValue() == null) &&
+                (this.coreCompetency.getValue() == "" || this.coreCompetency.getValue() == null)) {
+            return "\nID: " + this.id +
+                    "\nOOPS! This job does not seem to exist.";
+        }
+
+        else if (this.name == ""  || this.name == null) {
+            this.name = "Data not available";
+        }
+        if (this.employer.getValue() == ""  || this.employer.getValue() == null) {
+            this.employer.setValue("Data not available");    //This worked also: this.employer = new Employer("Data not available");
+        }
+        if (this.location.getValue() == ""  || this.location.getValue() == null) {
+            this.location.setValue("Data not available");
+        }
+        if (this.positionType.getValue() == "" || this.positionType.getValue() == null) {
+            this.positionType.setValue("Data not available");
+        }
+        if (this.coreCompetency.getValue() == "" || this.coreCompetency.getValue() == null) {
+            this.coreCompetency.setValue("Data not available");
+        }
+        return "\nID: " + this.id +
+                "\nName: " + this.name +
+                "\nEmployer: " + this.employer +
+                "\nLocation: " + this.location +
+                "\nPosition Type: " + this.positionType +
+                "\nCore Competency: " + this.coreCompetency +
                 "\n";
     }
 
-// DONE: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
+
+// DONE: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID and id.
 
     public int getId() {
         return id;

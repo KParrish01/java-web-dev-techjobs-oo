@@ -16,6 +16,9 @@ public class JobTest {
     Job test_job2;
     Job test_jobConstructor;
     Job test_jobConstructorDifferentId;
+    Job test_jobConstructorEmptyFields;
+    Job test_jobConstructorEmptyFields2DifferentFields;
+    Job test_jobConstructorAllFieldsEmptyStringOrNull;
 
     @Before
     public void init() {
@@ -23,6 +26,9 @@ public class JobTest {
         test_job2 = new Job();
         test_jobConstructor = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         test_jobConstructorDifferentId = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        test_jobConstructorEmptyFields = new Job("Sleeper", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        test_jobConstructorEmptyFields2DifferentFields = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency("Patience"));
+        test_jobConstructorAllFieldsEmptyStringOrNull = new Job("", new Employer(""), new Location(), new PositionType(""), new CoreCompetency(""));
     }
 
     @After
@@ -43,19 +49,6 @@ public class JobTest {
         assertTrue(test_job1.getId() + 1 == test_job2.getId());
         assertEquals(test_job2.getId(), (test_job1.getId() + 1), .001); // different way of testing same as isTrue above
     }
-
-//    @Test                    // <<<<<<delete before handing it in
-//    public void testIdNotNull() {
-//        assertNotNull(test_job1.getId());
-//    }
-//    @Test
-//    public void testsSettingJobIdSequential() {
-//        assertEquals(test_job2.getId(), (test_job1.getId() + 1), .001);
-//    }
-//    @Test
-//    public void testSettingJobIdSequentialTrue(){
-//        assertTrue(test_job1.getId() + 1 == test_job2.getId());
-//    }
 
     //May do: might combine the following two into "testConstructorSetsAllFields":
     @Test
@@ -79,16 +72,31 @@ public class JobTest {
     }
 
     @Test
-    public void testJobsForEquality() {
+    public void testJobsForEqualityIfAllButIdEqual() {
 //        System.out.println("Test - equal except ID is not equal #" + numTestsRun);
 //        System.out.println("ID of jobConstructor: " + test_jobConstructor.getId());
 //        System.out.println("ID of jobConstructorDifferentId: " + test_jobConstructorDifferentId.getId());
         assertFalse(test_jobConstructor == test_jobConstructorDifferentId);
     }
 
-    @Test
+    @Test //TODO: <<<<<<<<<<Do I need a separate test for each line? If so, work on this...>>>>>>>>>>>>>>>>>>>>>
     public void testBlankLineBeforeAndAfter() {
 //        assertEquals(test_jobConstructor.toString(), "");
+
+//        assertEquals(test_jobConstructor.startsWith("\n")); // change 5) into line-by-line tests?
+//        assertEquals(test_jobConstructor.contains("\n"));
+//        assertEquals(test_jobConstructor.endsWith("\n"));
+
+//        assertEquals(test_jobConstructor.toString(), "\n");
+//        assertEquals(test_jobConstructor.toString(),
+//                "\nID: " + test_jobConstructor.getId());
+
+//        if(!test_jobConstructor.getId() instanceof );
+//        if(!test_jobConstructor.getName() instanceof String) {;
+    }
+
+    @Test
+    public void testToStringPrintsCorrectOutput() {
         assertEquals(test_jobConstructor.toString(),
                 "\nID: " + test_jobConstructor.getId() +
                 "\nName: " + test_jobConstructor.getName() +
@@ -97,8 +105,33 @@ public class JobTest {
                 "\nPosition Type: " + test_jobConstructor.getPositionType() +
                 "\nCore Competency: " + test_jobConstructor.getCoreCompetency() +
                 "\n");
-//        if(!test_jobConstructor.getId() instanceof );
-//        if(!test_jobConstructor.getName() instanceof String) {;
+    }
+
+    @Test
+    public void testToStringReplaceWithDataNotAvailableIfNoValue() {
+        assertEquals("\nID: " + test_jobConstructorEmptyFields.getId() +
+                        "\nName: " + test_jobConstructorEmptyFields.getName() +
+                        "\nEmployer: " + "Data not available"+
+                        "\nLocation: " + "Data not available"+
+                        "\nPosition Type: " + "Data not available"+
+                        "\nCore Competency: " + "Data not available"+
+                        "\n",
+                    test_jobConstructorEmptyFields.toString());
+        assertEquals("\nID: " + test_jobConstructorEmptyFields2DifferentFields.getId() +
+                        "\nName: " + "Data not available" +
+                        "\nEmployer: " + "Data not available"+
+                        "\nLocation: " + "Data not available"+
+                        "\nPosition Type: " + "Data not available"+
+                        "\nCore Competency: " + test_jobConstructorEmptyFields2DifferentFields.getCoreCompetency() +
+                        "\n",
+                    test_jobConstructorEmptyFields2DifferentFields.toString());
+    }
+
+    @Test
+    public void testToStringOopsIfAllFieldsEmpty() {
+        assertEquals("\nID: " + test_jobConstructorAllFieldsEmptyStringOrNull.getId() +
+                "\nOOPS! This job does not seem to exist.",
+                test_jobConstructorAllFieldsEmptyStringOrNull.toString());
     }
 
 //    @Test
