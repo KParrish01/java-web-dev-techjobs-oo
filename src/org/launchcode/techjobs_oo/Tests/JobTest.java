@@ -28,7 +28,7 @@ public class JobTest {
         test_jobConstructorDifferentId = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         test_jobConstructorEmptyFields = new Job("Sleeper", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
         test_jobConstructorEmptyFields2DifferentFields = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency("Patience"));
-        test_jobConstructorAllFieldsEmptyStringOrNull = new Job("", new Employer(""), new Location(), new PositionType(""), new CoreCompetency(""));
+        test_jobConstructorAllFieldsEmptyStringOrNull = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
     }
 
     @After
