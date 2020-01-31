@@ -1,6 +1,5 @@
 package org.launchcode.techjobs_oo.Tests;
 
-import jdk.jfr.StackTrace;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -153,10 +152,5 @@ public class JobTest {
                 "\nOOPS! This job does not seem to exist.",
                 test_jobConstructorAllFieldsEmptyStringOrNull.toString());
     }
-
-//    @Test
-//    public void inheritsSuperInFirstConstructor() {
-//        assertEquals(0,0 /* (something only in Super), (check if it is in instance of extended class) */);
-//    }
 
 }

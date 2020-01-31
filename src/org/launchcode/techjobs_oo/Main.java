@@ -23,12 +23,6 @@ public class Main {
 
         for (Job job : jobs){
             System.out.println(job);
-//            System.out.println("\nID: " + job.getId());
-//            System.out.println("Name: " + job.getName());
-//            System.out.println("Employer: " + job.getEmployer());
-//            System.out.println("Location: " + job.getLocation());
-//            System.out.println("Position Type: " + job.getPositionType());
-//            System.out.println("Core Competency: " + job.getCoreCompetency() + "\n");
         }
     }
 
