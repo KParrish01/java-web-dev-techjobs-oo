@@ -28,8 +28,8 @@ public abstract class JobField {
     public boolean equals(Object o) {  // Two objects are equal if they have the same id.
         if (this == o) return true;
         if (!(o instanceof JobField)) return false;
-        JobField that = (JobField) o;
-        return getId() == that.getId();
+        JobField jobField = (JobField) o;
+        return getId() == jobField.getId();
     }
 
     @Override
